@@ -358,9 +358,12 @@ void loop(){
             } else if (header.indexOf("GET /left") >= 0) {
               Serial.println("Turning Left");
               left();
-            } else if (header.indexOf("GET /right/") >= 0) {
+            } else if (header.indexOf("GET /right") >= 0) {
               Serial.println("Turning Right");
               right();
+            } else if (header.indexOf("GET /baseState") >=0) {
+              Serial.println("Turning Right");
+              baseState();
             }
         
             client.println("<!DOCTYPE html><html>");
@@ -370,16 +373,18 @@ void loop(){
             client.println("<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}");
             client.println("h1 {background-color: #181818; color: white; padding: 10px; margin: 20px; }");
             client.println(".button { background-color: #FF9900; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration:none; display: inline-block; font-size: 16px; margin: 4px 2px;}");
-            client.println(".button:hover { background-color: ##C97900 }");
+            client.println(".button:hover { background-color: #C97900 }");
+            client.println(".button-center { background-color: #30F030; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration:none; display: inline-block; font-size: 16px; margin: 4px 2px;}");
+            client.println(".button-center:hover { background-color: #17B017 }");
             client.println(".grid-container { display: grid; grid-template-columns: auto auto auto; gap: 10px; justify-content: center; padding: 20px; }");
             client.println("</style></head>");
 
             client.println("<body><h1><b>Quadapod Control</b></h1>");
 
             client.println("<div class='grid-container'>");
-            client.println("<div></div><div><a href='/forward' class='button'><i class='fas fa-arrow-up'></i></a></div><div></div>");
-            client.println("<div><a href='/left' class='button'><i class='fas fa-arrow-left'></i></a></div><div></div><div><a href='/right/' class='button'><i class='fas fa-arrow-right'></i></a></div>");
-            client.println("<div></div><div><a href='/backward' class='button'><i class='fas fa-arrow-down'></i></a></div><div></div>");
+            client.println("<div></div><div><a href='/forward' class='button'><i class='fas fa-arrow-up fa-2x'></i></a></div><div></div>");
+            client.println("<div><a href='/left' class='button'><i class='fas fa-arrow-left fa-2x'></i></a></div><div><a href='/baseState' class='button-center'><i class='fas fa-circle fa-2x'></i></a></div><div><a href='/right' class='button'><i class='fas fa-arrow-right fa-2x'></i></a></div>");
+            client.println("<div></div><div><a href='/backward' class='button'><i class='fas fa-arrow-down fa-2x'></i></a></div><div></div>");
             client.println("</div>");
             client.println("</body></html>");
 
